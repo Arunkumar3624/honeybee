@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { MenuCategoryTab, MenuItemCard } from '../component/CafeComponents';
 import belgium from '../assets/belgiun-chocolately.avif';
-import redvelvet from '../assets/red-velvet.jpg';
+import redvelvet from '../assets/Red-Velvet.jpg';
 
 const menuCategories = [
   { name: 'WAFFLES', icon: '🧇' },
@@ -46,24 +46,6 @@ const menuData = {
     { name: 'Choco Lava Cake', price: 130, tag: 'MUST TRY', desc: 'Soft sponge cake with a gooey, melting chocolate center.', img: 'https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=200' },
   ],
 };
-
-
-// WAFFLES
-
-
-
-// FALOODA
-
-
-
-// ICE CREAMS
-
-
-
-// DESSERTS
-
-
-
 
 
 export default function Menu() {
