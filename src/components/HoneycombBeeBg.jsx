@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import "./HoneycombBeeBg.css";
+import "./honeycombbeebg.css";
 
 export default function HoneycombBeeBg() {
   const rootRef = useRef(null);
