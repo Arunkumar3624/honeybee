@@ -2,6 +2,9 @@ import { useMemo, useState } from "react";
 import "./App.css";
 import logo from "./assets/logo.png";
 import gift from "./assets/gift.mp4";
+import HoneycombBeeBg from "./components/HoneycombBeeBg";
+
+
 const categories = [
   {
     id: "waffles",
@@ -179,28 +182,17 @@ function App() {
   };
 
   return (
-    <main className="app-shell">
-      <div className="glow glow-one"></div>
-      <div className="glow glow-two"></div>
+    <div className="app-shell">
+      <main className="phone-frame">
+        <HoneycombBeeBg />
 
-      <section className="phone-frame">
-       <StatusBar />
 
         <header className="top-nav">
-          <button className="icon-btn" aria-label="Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-
           <div className="brand-logo">
             <img src={logo} alt="Bee Honey Cafe Logo" />
           </div>
 
-          <button className="bell-btn" aria-label="Notification">
-            🔔
-            <i></i>
-          </button>
+          <div className="nav-spacer"></div>
         </header>
 
         <section className="hero" id="home">
@@ -395,33 +387,37 @@ function App() {
           </div>
         </section>
 
-        <nav className="bottom-nav">
-          <button onClick={() => scrollToSection("home")}>🏠<span>Home</span></button>
-          <button onClick={() => scrollToSection("menu")}>📖<span>Menu</span></button>
-          <button onClick={() => scrollToSection("about")}>🐝<span>About</span></button>
-          <button onClick={() => scrollToSection("contact")}>☎<span>Contact</span></button>
+       <nav className="bottom-nav">
+          <button onClick={() => scrollToSection("home")}>
+            <em>⌂</em>
+            <span>Home</span>
+          </button>
+
+          <button onClick={() => scrollToSection("menu")}>
+            <em>🍽️</em>
+            <span>Menu</span>
+          </button>
+
+          <button onClick={() => scrollToSection("about")}>
+            <em>🐝</em>
+            <span>About</span>
+          </button>
+
+          <button onClick={() => scrollToSection("contact")}>
+            <em>✆</em>
+            <span>Contact</span>
+          </button>
         </nav>
-      </section>
+      </main>
 
       {selectedDish && (
         <DishModal dish={selectedDish} onClose={() => setSelectedDish(null)} />
       )}
-    </main>
-  );
-}
-
-function StatusBar() {
-  return (
-    <div className="status-bar">
-      <strong>9:41</strong>
-      <div>
-        <span>▮▮▮</span>
-        <span>⌁</span>
-        <span>▰</span>
-      </div>
     </div>
   );
 }
+
+
 
 function DishModal({ dish, onClose }) {
   return (

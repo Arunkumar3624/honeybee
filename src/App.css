@@ -49,25 +49,7 @@ button {
   overflow: hidden;
   padding: 20px 0;
 }
-.honeycomb-bg {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  opacity: 0.32;
-  pointer-events: none;
 
-  background-image:
-    linear-gradient(30deg, rgba(245, 164, 0, 0.28) 12%, transparent 12.5%, transparent 87%, rgba(245, 164, 0, 0.28) 87.5%, rgba(245, 164, 0, 0.28)),
-    linear-gradient(150deg, rgba(245, 164, 0, 0.28) 12%, transparent 12.5%, transparent 87%, rgba(245, 164, 0, 0.28) 87.5%, rgba(245, 164, 0, 0.28)),
-    linear-gradient(30deg, rgba(245, 164, 0, 0.28) 12%, transparent 12.5%, transparent 87%, rgba(245, 164, 0, 0.28) 87.5%, rgba(245, 164, 0, 0.28)),
-    linear-gradient(150deg, rgba(245, 164, 0, 0.28) 12%, transparent 12.5%, transparent 87%, rgba(245, 164, 0, 0.28) 87.5%, rgba(245, 164, 0, 0.28)),
-    linear-gradient(60deg, rgba(255, 202, 91, 0.22) 25%, transparent 25.5%, transparent 75%, rgba(255, 202, 91, 0.22) 75%, rgba(255, 202, 91, 0.22)),
-    linear-gradient(60deg, rgba(255, 202, 91, 0.22) 25%, transparent 25.5%, transparent 75%, rgba(255, 202, 91, 0.22) 75%, rgba(255, 202, 91, 0.22));
-
-  background-size: 80px 140px;
-  background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
-  animation: honeycombMove 28s linear infinite;
-}
 
 .glow {
   position: fixed;
@@ -92,41 +74,14 @@ button {
   animation-delay: 1.5s;
 }
 .phone-frame {
-  width: min(100%, 430px);
-  min-height: 100dvh;
-  background:
-    radial-gradient(circle at 78% 12%, rgba(245, 164, 0, 0.2), transparent 28%),
-    radial-gradient(circle at 12% 75%, rgba(255, 190, 75, 0.16), transparent 34%),
-    linear-gradient(180deg, #fff6e8, #fff0dc 48%, #fff8ef);
-  border-radius: 34px;
-  overflow: hidden;
   position: relative;
-  z-index: 2;
+  overflow-x: hidden;
+  overflow-y: visible;
   isolation: isolate;
-  box-shadow: var(--shadow);
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(18px);
+  padding-bottom: 95px;
 }
-.phone-frame::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.48;
 
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='84' viewBox='0 0 96 84'%3E%3Cg fill='%23f5a400' fill-opacity='.05' stroke='%23d89618' stroke-opacity='.28' stroke-width='1.5'%3E%3Cpath d='M24 2L46 14V38L24 50L2 38V14Z'/%3E%3Cpath d='M72 2L94 14V38L72 50L50 38V14Z'/%3E%3Cpath d='M48 42L70 54V78L48 90L26 78V54Z'/%3E%3C/g%3E%3C/svg%3E");
 
-  background-size: 78px 68px;
-  background-position: 0 0;
-  animation: realHoneycombMove 20s linear infinite;
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.9),
-    rgba(0, 0, 0, 0.58)
-  );
-}
 
 .phone-frame::before {
   content: "";
@@ -144,6 +99,7 @@ button {
   opacity: 0.92;
 }
 
+/* Make all content stay above animated bee background */
 .status-bar,
 .top-nav,
 .hero,
@@ -153,11 +109,11 @@ button {
 .honey-banner,
 .menu-section,
 .about-section,
-.contact-section,
-.bottom-nav {
+.contact-section {
   position: relative;
   z-index: 2;
 }
+
 
 .status-bar {
   height: 46px;
@@ -512,15 +468,16 @@ button {
 }
 
 .category-card span {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  margin: 0 auto 8px;
-  background: #fff4db;
-  font-size: 23px;
-  transition: 0.35s ease;
+  width: 52px;
+  height: 52px;
+  font-size: 25px;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.95), transparent 30%),
+    linear-gradient(135deg, #fff8e9, #ffd36b);
+  box-shadow:
+    0 10px 18px rgba(95, 48, 0, 0.16),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.7);
 }
 
 .category-card strong {
@@ -546,7 +503,10 @@ button {
 
 .category-card.active span,
 .category-card:hover span {
-  background: var(--brown);
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.9), transparent 30%),
+    linear-gradient(135deg, #3b1a00, #7a3500);
+  transform: translateY(-4px) rotate(-5deg) scale(1.08);
 }
 
 .section-heading {
@@ -933,40 +893,68 @@ button {
   font-size: 13px;
   line-height: 1.7;
 }
-
+/* Always visible bottom navbar */
 .bottom-nav {
-  position: sticky;
+  position: fixed;
+  left: 50%;
   bottom: 0;
-  margin: 0 12px;
+  transform: translateX(-50%);
+  width: min(calc(100% - 24px), 406px);
   height: 76px;
+  z-index: 80;
+
+  margin: 0;
+  padding: 8px;
   border-radius: 26px 26px 0 0;
-  background: rgba(255, 250, 244, 0.94);
-  backdrop-filter: blur(16px);
-  box-shadow: 0 -14px 28px rgba(72, 34, 0, 0.12);
+
+  background: rgba(255, 250, 244, 0.92);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 -14px 34px rgba(72, 34, 0, 0.18);
+
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  overflow: hidden;
 }
 
 .bottom-nav button {
   background: transparent;
   color: var(--brown);
-  font-size: 22px;
   display: grid;
   place-items: center;
-  gap: 2px;
+  gap: 3px;
+  border-radius: 18px;
+  transition: 0.3s ease;
+}
+
+.bottom-nav button em {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-style: normal;
+  font-size: 19px;
+  background: rgba(255, 181, 29, 0.18);
+  box-shadow: inset 0 0 0 1px rgba(245, 164, 0, 0.18);
   transition: 0.3s ease;
 }
 
 .bottom-nav button span {
-  display: block;
   font-size: 10px;
-  font-weight: 800;
+  font-weight: 900;
 }
 
-.bottom-nav button:hover {
+.bottom-nav button:hover,
+.bottom-nav button:focus {
   color: var(--honey);
   transform: translateY(-4px);
+}
+
+.bottom-nav button:hover em,
+.bottom-nav button:focus em {
+  background: linear-gradient(135deg, #ffbd21, #ee9700);
+  color: #2a1606;
+  transform: scale(1.08);
+  box-shadow: 0 8px 18px rgba(238, 151, 0, 0.35);
 }
 
 .modal-backdrop {

@@ -1,0 +1,41 @@
+.hc-react-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 35% 30%, #ffcc55 0%, #e07a10 55%, #b85208 100%);
+}
+
+.hc-react-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.2), transparent 35%),
+    linear-gradient(
+      180deg,
+      rgba(255, 246, 232, 0.18),
+      rgba(255, 238, 205, 0.28)
+    );
+}
+
+.hc-react-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hc-react-bee {
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  z-index: 2;
+  pointer-events: none;
+  will-change: left, top, transform;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45));
+}
